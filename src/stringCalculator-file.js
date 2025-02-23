@@ -9,10 +9,14 @@ function add(numbers) {
     const delimiterPart = parts[0].slice(2); // Extract custom delimiter definition.
     numbers = parts[1]; // Remaining part is the numbers string.
 
-    if (delimiterPart.startsWith("[")) {
+    if (delimiterPart.startsWith('[')) {
       // Handle multi-character delimiters.
-      const customDelimiter = delimiterPart.slice(1, -1); // Extract between `[` and `]`.
-      delimiter = new RegExp(escapeRegex(customDelimiter));
+      const delimiterPattern = delimiterPart
+        .match(/\[([^\]]+)\]/g) // Match all `[delimiter]` parts.
+        .map((d) => d.slice(1, -1)) // Remove square brackets.
+        .map((d) => escapeRegex(d)) // Escape special regex characters.
+        .join('|'); // Join delimiters with `|` for regex alternation.
+      delimiter = new RegExp(delimiterPattern);
     } else {
       // Single-character delimiter.
       delimiter = new RegExp(escapeRegex(delimiterPart));
