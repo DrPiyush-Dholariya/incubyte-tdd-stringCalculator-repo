@@ -1,0 +1,14 @@
+{
+    "name": "incubyte-tdd-stringcalculator-repo",
+    "version": "1.0.0",
+    "description": "Assessment submission for incubyte TDD",
+    "main": "index.js",
+    "scripts": {
+      "test": "jest"
+    },
+    "author": "Piyush Dholariya",
+    "license": "MIT",
+    "devDependencies": {
+      "jest": "^29.7.0"
+    }
+  }
